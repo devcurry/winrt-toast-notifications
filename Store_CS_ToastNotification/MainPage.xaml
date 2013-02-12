@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="Store_CS_ToastNotification.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Store_CS_ToastNotification"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     Loaded="Page_Loaded_1">
+    <Page.Resources>
+        <!--Style for displaying Data in the TextBlock in GridView-->
+        <Style TargetType="TextBlock" x:Key="txtstyle">
+            <Setter Property="Width" Value="75"></Setter>
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Foreground" Value="Red"></Setter>
+         </Style>
+        <!--Ends Here-->
+        <!--DataTemplate for Displaying Data in the GridView-->
+        <DataTemplate x:Key="EmpTemplate">
+            <Grid Width="200" Height="100"   Background="Aqua">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="EmpNo"  Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EmpNo}" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="EmpName" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding EmpName}" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Salary" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Salary}" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="DeptName" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding DeptName}" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Designation" Style="{StaticResource txtstyle}"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Designation}" Style="{StaticResource txtstyle}"></TextBlock>
+            </Grid>
+        </DataTemplate>
+        <!--Ends Here-->
+
+        <!--Items Panel for displaying Rows and Columns in the GridView -->
+        <ItemsPanelTemplate x:Key="GridViewItemsPanel">
+            <WrapGrid MaximumRowsOrColumns="5"/>
+        </ItemsPanelTemplate>
+        <!--Ends Here-->
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="0,10,0,0"
+           Height="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="700"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Button x:Name="btncreatetoast" Content="Get Employees"
+                Margin="10,10,0,0" VerticalAlignment="Top" Width="723" Click="btncreatetoast_click"
+                 Grid.Row="0"/>
+        
+        <GridView x:Name="gvEmployees" ItemTemplate="{StaticResource EmpTemplate}" Margin="0,10,0,0"
+                   ItemsPanel="{StaticResource GridViewItemsPanel}" Grid.Row="1" 
+                   BorderBrush="Red" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible"
+            ScrollViewer.HorizontalScrollBarVisibility="Visible"  
+                  Height="690">
+        </GridView>
+    </Grid>
+</Page>
